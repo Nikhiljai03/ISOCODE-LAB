@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+:root { --ivory:#f5f2ea; --forest:#172b23; --evergreen:#243b30; --sand:#e6ddcc; --sage:#9baa98; --copper:#a87950; --charcoal:#242824; }
+@theme inline { --color-ivory: var(--ivory); --color-forest: var(--forest); --color-evergreen: var(--evergreen); --color-sand: var(--sand); --color-sage: var(--sage); --color-copper: var(--copper); }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--ivory); color:var(--charcoal); font-family:var(--font-sans),sans-serif; }
+.font-display { font-family:var(--font-display),serif; }
+::selection { background:#a87950; color:white; }
+:focus-visible { outline:2px solid var(--copper); outline-offset:3px; }
+
+@keyframes reveal { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+.reveal { animation:reveal .8s cubic-bezier(.22,.68,0,1) both; }
+.reveal-delay { animation-delay:.16s; }
+
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; } }

@@ -51,7 +51,7 @@ def create_hold(category_id: uuid.UUID, arrival: date, departure: date, units: i
         raise HTTPException(409, str(exc))
     except MissingConfiguration as exc:
         raise HTTPException(422, str(exc))
-    return {"hold_id": str(hold.id), "booking_id": str(booking.id), "expires_at": hold.expires_at.isoformat()}
+    return {"hold_id": str(hold.id), "booking_id": str(booking.id), "expires_at": hold.expires_at.isoformat(), "subtotal": str(booking.subtotal), "tax_total": str(booking.tax_total), "total_amount": str(booking.total_amount), "currency": booking.currency}
 
 
 @router.post("/inventory/expire-holds")

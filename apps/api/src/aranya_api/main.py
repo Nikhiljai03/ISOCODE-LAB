@@ -4,6 +4,7 @@ from aranya_api.shared.config import get_settings
 from aranya_api.inventory.api import router as inventory_router
 from aranya_api.enquiries.api import router as enquiry_router
 from aranya_api.payments.api import router as payment_router
+from aranya_api.accommodations.api import router as accommodation_router
 from aranya_api.accommodations import models as accommodation_models
 from aranya_api.booking import models as booking_models
 from aranya_api.inventory import models as inventory_models
@@ -23,6 +24,7 @@ app.add_middleware(
 app.include_router(inventory_router)
 app.include_router(enquiry_router)
 app.include_router(payment_router)
+app.include_router(accommodation_router)
 
 
 @app.get("/health")

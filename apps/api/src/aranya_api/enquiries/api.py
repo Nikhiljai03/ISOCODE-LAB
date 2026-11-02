@@ -43,6 +43,17 @@ def create_enquiry(payload: EnquiryCreate, db: Session = Depends(get_db)):
     return {"id": str(enquiry.id), "status": enquiry.status}
 
 
+@router.get("")
+def list_enquiries(db: Session = Depends(get_db)):
+    enquiries = db.query(Enquiry).order_by(Enquiry.created_at.desc()).all()
+    return [{
+        "id": str(item.id), "source": item.source, "sender_name": item.sender_name,
+        "sender_contact": item.sender_contact, "message": item.message, "status": item.status,
+        "category": item.category, "confidence": item.confidence, "extracted": item.extracted,
+        "created_at": item.created_at.isoformat(),
+    } for item in enquiries]
+
+
 @router.post("/{enquiry_id}/drafts/{draft_id}/approve")
 def approve_draft(enquiry_id: uuid.UUID, draft_id: uuid.UUID, db: Session = Depends(get_db)):
     draft = db.get(EnquiryDraft, draft_id)
